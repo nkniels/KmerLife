@@ -1,0 +1,52 @@
+# CODEOWNERS: the real enforcement of domain boundaries. 
+# Replace every placeholder handle below with the real GitHub username BEFORE the first commit 
+# (find and replace @DEV01_HANDLE etc.). Invalid handles make GitHub ignore the line. 
+# Later lines override earlier ones. 
+ 
+# Default: the lead reviews anything not listed below. 
+*                                          @DEV01_HANDLE 
+ 
+# DEV-01 Kernel and Economy 
+/src/game/*.ts                             @DEV01_HANDLE 
+/src/lib/                                  @DEV01_HANDLE 
+/scripts/                                  @DEV01_HANDLE 
+/tests/game/                               @DEV01_HANDLE 
+/docs/                                     @DEV01_HANDLE 
+/devs/                                     @DEV01_HANDLE 
+/.github/                                  @DEV01_HANDLE 
+/AGENTS.md                                 @DEV01_HANDLE 
+/CONVENTIONS.md                            @DEV01_HANDLE 
+/interfaces.md                             @DEV01_HANDLE 
+/package.json                              @DEV01_HANDLE 
+ 
+# Shared server layer: lead and platform dev 
+/src/server/                               @DEV01_HANDLE @DEV04_HANDLE 
+ 
+# DEV-02 Character, Jobs and Housing 
+/src/game/modules/jobs/                    @DEV02_HANDLE 
+/src/game/modules/housing/                 @DEV02_HANDLE 
+/src/features/character/                   @DEV02_HANDLE 
+/src/features/dashboard/                   @DEV02_HANDLE 
+ 
+# DEV-03 City, Travel and Venues 
+/src/game/modules/travel/                  @DEV03_HANDLE 
+/src/game/modules/venues/                  @DEV03_HANDLE 
+/src/features/city/                        @DEV03_HANDLE 
+/content/venues*                           @DEV03_HANDLE 
+ 
+# DEV-04 Platform (auth, database, deploy, app shell) 
+/supabase/                                 @DEV04_HANDLE 
+/src/app/                                  @DEV04_HANDLE 
+/.env.example                              @DEV04_HANDLE 
+ 
+# DEV-05 Social and Realtime 
+/src/game/modules/njangi/                  @DEV05_HANDLE 
+/src/game/modules/social/                  @DEV05_HANDLE 
+/src/features/social/                      @DEV05_HANDLE 
+/src/services/realtime/                    @DEV05_HANDLE 
+ 
+# DEV-06 World, Events and Seasons 
+/src/game/modules/events/                  @DEV06_HANDLE 
+/src/game/modules/seasons/                 @DEV06_HANDLE 
+/src/services/world/                       @DEV06_HANDLE 
+/content/events*                           @DEV06_HANDLE 

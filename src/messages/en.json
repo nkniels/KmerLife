@@ -1,0 +1,36 @@
+{ 
+  "app": { "name": "KmerLife" }, 
+  "job": { 
+    "benskin_rider": "Benskin rider", 
+    "market_trader": "Market trader", 
+    "tailor": "Tailor", 
+    "momo_agent": "Mobile money agent", 
+    "private_tutor": "Private tutor" 
+  }, 
+  "housing": { 
+    "relatives": "Staying with relatives", 
+    "chambre": "Rented room", 
+    "studio": "Studio" 
+  }, 
+  "venue": { 
+    "mokoloMarket": "Mokolo Market", 
+    "marcheCentral": "Central Market", 
+    "marcheMfoundi": "Mfoundi Market", 
+    "bastosQuarter": "Bastos", 
+    "mvogMbiQuarter": "Mvog-Mbi", 
+    "mvanBusStation": "Mvan Bus Station", 
+    "lacMunicipal": "Municipal Lake", 
+    "ngoaEkelleCampus": "Ngoa-Ekelle Campus" 
+  }, 
+  "error": { 
+    "INVALID_ACTION": "That action is not valid.", 
+    "NO_JOB": "You need a job first.", 
+    "SAME_JOB": "You already have this job.", 
+    "NOT_ENOUGH_ENERGY": "You are too tired. Rest or eat.", 
+    "NOT_ENOUGH_FCFA": "Not enough FCFA.", 
+    "ENERGY_FULL": "You are not hungry.", 
+    "NOTHING_OWED": "You owe no rent.", 
+    "HAS_ARREARS": "Pay your rent arrears first.", 
+    "SAME_HOUSING": "You already live here." 
+  } 
+} 

@@ -1,0 +1,21 @@
+{ 
+  "city": "yaounde", 
+  "venues": [ 
+    { "id": "mokolo-market", "nameKey": "venue.mokoloMarket", "type": "market", "actions": ["work", 
+"buy_meal"], "open": "06:00", "close": "19:00" }, 
+    { "id": "marche-central", "nameKey": "venue.marcheCentral", "type": "market", "actions": 
+["work", "buy_meal"], "open": "06:00", "close": "19:00" }, 
+    { "id": "marche-mfoundi", "nameKey": "venue.marcheMfoundi", "type": "market", "actions": 
+["work", "buy_meal"], "open": "06:00", "close": "18:00" }, 
+    { "id": "bastos-quarter", "nameKey": "venue.bastosQuarter", "type": "residential", "actions": 
+["move_housing", "buy_meal"], "open": "00:00", "close": "24:00" }, 
+    { "id": "mvog-mbi-quarter", "nameKey": "venue.mvogMbiQuarter", "type": "residential", 
+"actions": ["move_housing", "buy_meal"], "open": "00:00", "close": "24:00" }, 
+    { "id": "mvan-bus-station", "nameKey": "venue.mvanBusStation", "type": "transport", "actions": 
+["travel"], "open": "05:00", "close": "21:00" }, 
+    { "id": "lac-municipal", "nameKey": "venue.lacMunicipal", "type": "leisure", "actions": 
+["chat", "rest"], "open": "00:00", "close": "24:00" }, 
+    { "id": "ngoa-ekelle-campus", "nameKey": "venue.ngoaEkelleCampus", "type": "campus", "actions": 
+["work", "chat"], "open": "07:00", "close": "18:00" } 
+  ] 
+} 

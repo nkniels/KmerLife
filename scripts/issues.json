@@ -1,0 +1,345 @@
+[ 
+  { 
+    "title": "[DEV-04] Scaffold Next.js (App Router) into the existing repo", 
+    "labels": [ 
+      "dev-04", 
+      "type:infra" 
+    ], 
+    "milestone": "Week 1: Foundations", 
+    "body": "**Owner:** DEV-04\n\n**Goal:** Add Next.js, React, Tailwind and next-intl on top of 
+the existing structure without moving or deleting anything.\n\n**Acceptance criteria:**\n- 
+`src/app/[locale]/...` routes exist with en and fr\n- Existing `npm run lint`, `typecheck`, `test` 
+still pass\n- CI also runs `next build`\n- No file under `src/game/` is modified\n\nRead 
+`AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+
+
+  { 
+    "title": "[DEV-04] Supabase project, migrations and RLS", 
+    "labels": [ 
+      "dev-04", 
+      "type:infra" 
+    ], 
+    "milestone": "Week 1: Foundations", 
+    "body": "**Owner:** DEV-04\n\n**Goal:** Create tables characters, action_log, transactions, 
+world_state with row-level security.\n\n**Acceptance criteria:**\n- Migrations are reversible and 
+live in `supabase/migrations/`\n- `action_log` has UNIQUE (player_id, key)\n- RLS: a player can 
+read only their own character; no client writes to money or energy\n- Types generated into 
+`src/lib/database.types.ts`\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work 
+only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-04] Auth and create-character endpoint", 
+    "labels": [ 
+      "dev-04", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 1: Foundations", 
+    "body": "**Owner:** DEV-04\n\n**Goal:** Email magic-link sign-in and an API route that calls 
+`createPlayer` and stores the result.\n\n**Acceptance criteria:**\n- Only MVP cities accepted 
+(server-side check)\n- Name validation comes from `createPlayerSchema`\n- Never trusts client-
+supplied money, energy or tier\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. 
+Work only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-01] Server action handler: lock, reduce, persist", 
+    "labels": [ 
+      "dev-01", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 1: Foundations", 
+    "body": "**Owner:** DEV-01\n\n**Goal:** Implement `src/server/handle-action.ts`: load player 
+FOR UPDATE, call `applyAction`, persist state and action_log in one transaction.\n\n**Acceptance 
+criteria:**\n- Repeating the same idempotency key returns the stored result and changes nothing\n- 
+Concurrent actions on one player serialize correctly (test with parallel calls)\n- Failures return 
+the error code from `ErrorCode` unchanged\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` 
+first. Work only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-02] Character creation UI (FR/EN)", 
+    "labels": [ 
+      "dev-02", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 1: Foundations", 
+    "body": "**Owner:** DEV-02\n\n**Goal:** Mobile-first creation flow: name, origin, city (Yaoundé 
+only).\n\n**Acceptance criteria:**\n- All strings come from `src/messages/{en,fr}.json`\n- Works on 
+a 360px-wide screen and a slow connection\n- Calls DEV-04's endpoint; no game rules in the 
+component\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your 
+owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-02] Dashboard: balance, energy, job picker, work button", 
+    "labels": [ 
+      "dev-02", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 1: Foundations", 
+    "body": "**Owner:** DEV-02\n\n**Goal:** Show FCFA and energy, choose a job, press 
+work.\n\n**Acceptance criteria:**\n- Energy bar predicted locally with `accrue` so it moves without 
+polling\n- Every action sends a fresh UUID idempotency key\n- Server response always replaces local 
+state\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned 
+paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-01] Kernel hardening: property tests", 
+    "labels": [ 
+      "dev-01", 
+      "type:infra" 
+    ], 
+    "milestone": "Week 1: Foundations", 
+    "body": "**Owner:** DEV-01\n\n**Goal:** Add property-based tests (fast-check) for accrue and 
+applyAction.\n\n**Acceptance criteria:**\n- Money is always an integer and never negative\n- Energy 
+always within 0..ENERGY_MAX\n- accrue is idempotent and monotonic in time\n\nRead `AGENTS.md`, 
+`CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-01] Economy simulator v2 and tuning pass", 
+    "labels": [ 
+      "dev-01", 
+      "type:balance" 
+
+
+    ], 
+    "milestone": "Week 2: Economy and Content", 
+    "body": "**Owner:** DEV-01\n\n**Goal:** Extend `scripts/simulate.ts` (CSV output, more 
+strategies) and tune constants to the targets in `docs/ECONOMY.md`.\n\n**Acceptance criteria:**\n- 
+`docs/ECONOMY.md` updated with the new baseline table\n- Inflation target met for casual, regular 
+and grinder strategies\n- Every constant change is justified in the PR description with simulator 
+output\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned 
+paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-01] Design and add money sinks: transport, living costs, upgrades", 
+    "labels": [ 
+      "dev-01", 
+      "type:balance" 
+    ], 
+    "milestone": "Week 2: Economy and Content", 
+    "body": "**Owner:** DEV-01\n\n**Goal:** Design first (short doc in `docs/decisions/`), then 
+implement sinks so a regular player cannot just hoard FCFA.\n\n**Acceptance criteria:**\n- Design 
+approved by DEV-01 before code\n- Simulator shows savings rate within target\n- New actions added 
+to `actionSchema` and tests\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work 
+only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-02] Housing UI and rent arrears flow", 
+    "labels": [ 
+      "dev-02", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 2: Economy and Content", 
+    "body": "**Owner:** DEV-02\n\n**Goal:** Show tier, next rent date, arrears, pay arrears, move 
+housing.\n\n**Acceptance criteria:**\n- Eviction shown clearly with a recovery path\n- All amounts 
+formatted FCFA with thin-space thousands separators\n\nRead `AGENTS.md`, `CONVENTIONS.md` and 
+`interfaces.md` first. Work only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-03] Venue content schema and eight Yaoundé venues", 
+    "labels": [ 
+      "dev-03", 
+      "type:content" 
+    ], 
+    "milestone": "Week 2: Economy and Content", 
+    "body": "**Owner:** DEV-03\n\n**Goal:** Define the venue schema in `content/` and fill eight 
+venues.\n\n**Acceptance criteria:**\n- IDs are stable kebab-case; names are message keys\n- Each 
+venue lists allowed actions and opening hours\n- Validated by a unit test\n\nRead `AGENTS.md`, 
+`CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-06] Event content schema and first ten radio trottoir rumors", 
+    "labels": [ 
+      "dev-06", 
+      "type:content" 
+    ], 
+    "milestone": "Week 2: Economy and Content", 
+    "body": "**Owner:** DEV-06\n\n**Goal:** Define the event schema and write ten rumors, some true 
+and some false, in FR and EN.\n\n**Acceptance criteria:**\n- Each rumor has truth flag, effect on 
+the economy if true, expiry\n- Generated or hand-written text reviewed for tone\n- No real people 
+or real brands named\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only 
+inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-03] City map UI", 
+    "labels": [ 
+      "dev-03", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 3: City and Deploy", 
+    "body": "**Owner:** DEV-03\n\n**Goal:** Static, mobile-first map of Yaoundé with the eight 
+venues.\n\n**Acceptance criteria:**\n- Light assets (target under 300 KB total)\n- Tap a venue to 
+see what you can do there\n- No real-time dependency yet\n\nRead `AGENTS.md`, `CONVENTIONS.md` and 
+`interfaces.md` first. Work only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-03] Travel module: on foot, benskin, taxi, car", 
+    "labels": [ 
+      "dev-03", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 3: City and Deploy", 
+    "body": "**Owner:** DEV-03\n\n**Goal:** Design and implement travel as a pure module in 
+`src/game/modules/travel/`.\n\n**Acceptance criteria:**\n- Each mode has time and FCFA cost from 
+constants\n- Tests in `tests/game/`\n- Registered in the engine by DEV-01 via a small PR\n\nRead 
+`AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+
+
+  { 
+    "title": "[DEV-04] Deploy: Vercel plus Supabase, preview environments", 
+    "labels": [ 
+      "dev-04", 
+      "type:infra" 
+    ], 
+    "milestone": "Week 3: City and Deploy", 
+    "body": "**Owner:** DEV-04\n\n**Goal:** Production and preview deployments with env vars 
+documented in `.env.example`.\n\n**Acceptance criteria:**\n- Secrets only in Vercel/Supabase, never 
+in git\n- Service-role key is server-only\n- Cost alerts configured on every paid service\n\nRead 
+`AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-05] Ably token endpoint and venue presence", 
+    "labels": [ 
+      "dev-05", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 4: Multiplayer", 
+    "body": "**Owner:** DEV-05\n\n**Goal:** `/api/ably-token` issuing scoped tokens, and presence 
+per venue.\n\n**Acceptance criteria:**\n- Clients never see the Ably API key\n- A token only allows 
+subscribing to the player's own city\n- Realtime sits behind a `RealtimeTransport` interface so it 
+can be swapped\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside 
+your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-05] City chat with report and mute", 
+    "labels": [ 
+      "dev-05", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 4: Multiplayer", 
+    "body": "**Owner:** DEV-05\n\n**Goal:** Per-city chat with moderation basics.\n\n**Acceptance 
+criteria:**\n- Rate limit per player\n- Report and mute work\n- Profanity and abuse policy 
+documented in `docs/GAME_DESIGN.md`\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` 
+first. Work only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-05] Offline action queue with retry", 
+    "labels": [ 
+      "dev-05", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 4: Multiplayer", 
+    "body": "**Owner:** DEV-05\n\n**Goal:** Queue actions locally and replay with the same 
+idempotency keys when the connection returns.\n\n**Acceptance criteria:**\n- Works across page 
+reloads\n- Duplicates impossible by construction\n- Clear UI state for pending actions\n\nRead 
+`AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-05] Reminders: Telegram bot and web push", 
+    "labels": [ 
+      "dev-05", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 4: Multiplayer", 
+    "body": "**Owner:** DEV-05\n\n**Goal:** Notify players when rent is due or energy is 
+full.\n\n**Acceptance criteria:**\n- Opt-in only\n- No personal data stored beyond what is 
+needed\n- Messages localized\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work 
+only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-05] Njangi module", 
+    "labels": [ 
+      "dev-05", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 5: Culture and Pilot Prep", 
+    "body": "**Owner:** DEV-05\n\n**Goal:** Rotating savings groups as specified in 
+`docs/GAME_DESIGN.md`.\n\n**Acceptance criteria:**\n- Pure rules module with tests including 
+default and dropout cases\n- Server-authoritative; no client-side money movement\n\nRead 
+`AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-06] Radio trottoir events engine and Eneo power cuts", 
+    "labels": [ 
+      "dev-06", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 5: Culture and Pilot Prep", 
+    "body": "**Owner:** DEV-06\n\n**Goal:** Scheduled generation of rumors and outages that affect 
+gameplay.\n\n**Acceptance criteria:**\n- Idempotent scheduled job\n- True and false rumors affect 
+
+
+the economy as defined\n- Events delivered through DEV-05's realtime layer\n\nRead `AGENTS.md`, 
+`CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-06] Echoes: record and replay", 
+    "labels": [ 
+      "dev-06", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 5: Culture and Pilot Prep", 
+    "body": "**Owner:** DEV-06\n\n**Goal:** Record anonymized action sequences and replay them as 
+labelled echoes in empty venues.\n\n**Acceptance criteria:**\n- Echoes are clearly labelled in the 
+UI\n- No private data in recordings\n- Never affect real players' economy\n\nRead `AGENTS.md`, 
+`CONVENTIONS.md` and `interfaces.md` first. Work only inside your owned paths (see 
+`.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-01] Pilot readiness: analytics, flags, privacy notice", 
+    "labels": [ 
+      "dev-01", 
+      "type:infra" 
+    ], 
+    "milestone": "Week 5: Culture and Pilot Prep", 
+    "body": "**Owner:** DEV-01\n\n**Goal:** Event analytics (D1/D7), feature flags, seed data, 
+privacy notice in FR/EN.\n\n**Acceptance criteria:**\n- Privacy notice reviewed against Cameroonian 
+data-protection rules\n- No phone numbers collected unless needed\n- Dashboard for 
+retention\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` first. Work only inside your 
+owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-01] Run the campus pilot and review the data", 
+    "labels": [ 
+      "dev-01", 
+      "type:balance" 
+    ], 
+    "milestone": "Week 6: Pilot", 
+    "body": "**Owner:** DEV-01\n\n**Goal:** Invite a closed cohort, observe, and decide on 
+changes.\n\n**Acceptance criteria:**\n- Written pilot report with D1 and D7 retention and economy 
+health\n- Top five fixes filed as issues\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` 
+first. Work only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-06] Season 0 reset tooling", 
+    "labels": [ 
+      "dev-06", 
+      "type:feature" 
+    ], 
+    "milestone": "Week 6: Pilot", 
+    "body": "**Owner:** DEV-06\n\n**Goal:** Tooling to close a season and start the next one 
+fairly.\n\n**Acceptance criteria:**\n- Reset is a documented, tested, reversible-by-backup 
+operation\n- Hall of fame preserved\n\nRead `AGENTS.md`, `CONVENTIONS.md` and `interfaces.md` 
+first. Work only inside your owned paths (see `.github/CODEOWNERS`)." 
+  }, 
+  { 
+    "title": "[DEV-04] Security review: RLS tests and secrets audit", 
+    "labels": [ 
+      "dev-04", 
+      "type:infra" 
+    ], 
+    "milestone": "Week 6: Pilot", 
+    "body": "**Owner:** DEV-04\n\n**Goal:** Automated tests proving a player cannot read or write 
+another player's data or money.\n\n**Acceptance criteria:**\n- Tests run in CI against a local 
+Supabase\n- Secrets scanning enabled on the repo\n\nRead `AGENTS.md`, `CONVENTIONS.md` and 
+`interfaces.md` first. Work only inside your owned paths (see `.github/CODEOWNERS`)." 
+  } 
+] 
